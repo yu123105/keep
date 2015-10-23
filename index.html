@@ -1,0 +1,47 @@
+<html>
+<head>
+  <title>Filesystem Access Example</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+
+  <nav>
+  </nav>
+  <span>
+    Path:
+    <span id="file_path"></span>
+    Size:
+    <span id="file_size"></span>
+    bytes
+    
+    <button id="choose_file">Choose File</button>
+    <button id="choose_dir">Choose Directory</button>
+  </span>
+  <div id="main">
+    <div id="navigate">
+      
+    </div>
+
+    <div id="content">
+      <div id="code">
+        <textarea></textarea>
+      </div>
+
+      <div id="result">
+        
+      </div>
+    </div>
+  </div>
+  <output></output>
+
+  
+
+  <p>
+    <button id="save_file" disabled>Save As</button>
+  </p>
+  <script src="js/jquery-1.9.1.min.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/dnd.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
