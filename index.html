@@ -2,7 +2,20 @@
 <head>
   <title>Keep</title>
   <link rel="stylesheet" type="text/css" href="css/main.css">
-  
+  <link href="css/jquery-accordion-menu.css" rel="stylesheet" type="text/css" />
+  <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+  body{background:#f0f0f0;}
+  .content{width:260px;margin:100px auto;}
+  #dir a{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    white-space:nowrap;
+    width:100%;
+  }
+  </style>
   
 </head>
 <body>
@@ -20,8 +33,9 @@
     <button id="choose_dir">Choose Directory</button>
   </span>
   <div id="main">
-    <div id="navigate">
-      
+    <div id="navigate" class="navigation red">
+      <ul id="dir">
+      </ul>
     </div>
 
     <div id="content">
@@ -46,5 +60,6 @@
   <script src="js/util.js"></script>
   <script src="js/dnd.js"></script>
   <script src="js/app.js"></script>
+
 </body>
 </html>

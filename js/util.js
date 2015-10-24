@@ -13,15 +13,15 @@ var createUUID = (function (uuidRegEx, uuidReplacer) {
 
 
 var createFileHtml = function(id, text){
-	var html = "<li class='file'><a href='#' id='" + id + "'>" + text +"</a></li>";
+	var html = "<li class='file'><a href='#' id='" + id + "'><i class='fa fa-file-archive-o'></i>" + text +"</a></li>";
 	return  html;
 }
 function createDirHtml(id, text){
     var html = "<li class='dir_content'>" +
                     "<a id='" + id + "' class='dir' href='#'>" +
-                        text +
+                        "<i class='fa fa-cog'></i>"+ text +
                     "</a>"+
-                    "<ul class='files'> </ul>"
+                    "<ul class='files submenu' style='display:none;'> </ul>"+
                 "</li>"
     return html;
 } 

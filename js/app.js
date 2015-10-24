@@ -160,9 +160,9 @@ function loadDirEntry(_chosenEntry, target) {
               var html = createDirHtml(id, item.name);
 
               if(target){
-                target.next(".files").append(html);
+                target.next(".files").prepend(html);
               }else{
-                $("#navigate").append(html);
+                $("#dir").prepend(html);
               }
               var label = document.getElementById(id);
               addEventHandler(label, "click", onDirectoryClick, item);
@@ -172,7 +172,7 @@ function loadDirEntry(_chosenEntry, target) {
               if(target){
                   target.next(".files").append(html);
               }else{
-                $("#navigate").append(html);
+                $("#dir").append(html);
               }
               var label = document.getElementById(id);
               addEventHandler(label, "click", onFileClick, item);
@@ -260,7 +260,7 @@ chooseDirButton.addEventListener('click', function(e) {
       return;
     }
     //clear nav
-    $('#navigate').empty();
+    $('#dir').empty();
     // use local storage to retain access to this file
     chrome.storage.local.set({'chosenFile': chrome.fileSystem.retainEntry(theEntry)});
     loadDirEntry(theEntry);
@@ -305,5 +305,10 @@ var dnd = new DnDFileController('body', function(data) {
   saveFileButton.disabled = false;
   displayEntryData(chosenEntry);
 });
+$("#navigation").jqueryAccordionMenu();
 
+  $("#dir li").click(function(){
+    $("#dir li.active").removeClass("active")
+    $(this).addClass("active");
+  }) ; 
 loadInitialFile(launchData);

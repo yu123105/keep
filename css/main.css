@@ -5,9 +5,7 @@ a{
 .file{
   background-color: #72CB6F;
 }
-.dir{
-  background-color: #FF620D;
-}
+
 #main{
   width: 100%;
 }
@@ -17,7 +15,7 @@ a{
   display: inline;
   float:left;
   overflow:auto; 
-  background-color: #E6E6E6;
+  background-color: #FFF;
 }
 #content{
   width: 80%;
