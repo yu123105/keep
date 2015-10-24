@@ -7,8 +7,6 @@ var output = document.querySelector('output');
 var textarea = document.querySelector('textarea');
 
 
-
-
 function errorHandler(e) {
   console.error(e);
 }
@@ -132,12 +130,19 @@ function loadFileEntry(_chosenEntry) {
 
 // for directories, read the contents of the top-level directory (ignore sub-dirs)
 // and put the results into the textarea, then disable the Save As button
-function loadDirEntry(_chosenEntry) {
+function loadDirEntry(_chosenEntry, target) {
   chosenEntry = _chosenEntry;
   if (chosenEntry.isDirectory) {
     var dirReader = chosenEntry.createReader();
     var entries = [];
-
+    var parent;    
+    if(target){
+      //called by click event
+      parent = target;
+    }else{
+      //called by open dir button
+      var id = createUUID();
+    }
     // Call the reader.readEntries() until no more results are returned.
     var readEntries = function() {
        dirReader.readEntries (function(results) {
@@ -149,15 +154,27 @@ function loadDirEntry(_chosenEntry) {
         else {
           results.forEach(function(item) {
             var id = createUUID();
-            var html = createHtml(id, item.fullPath);
-
-            $("#navigate").append(html);
-            var label = document.getElementById(id);
+            
             if(item.isDirectory){              
               //bind DirEventListener
+              var html = createDirHtml(id, item.name);
+
+              if(target){
+                target.next(".files").append(html);
+              }else{
+                $("#navigate").append(html);
+              }
+              var label = document.getElementById(id);
               addEventHandler(label, "click", onDirectoryClick, item);
             } else{
               //bind FileEventListener 
+              var html = createFileHtml(id, item.name);
+              if(target){
+                  target.next(".files").append(html);
+              }else{
+                $("#navigate").append(html);
+              }
+              var label = document.getElementById(id);
               addEventHandler(label, "click", onFileClick, item);
             }
             
@@ -174,9 +191,17 @@ function loadDirEntry(_chosenEntry) {
   }
 }
 
-function onDirectoryClick(directoryEntry){
-
-    loadDirEntry(directoryEntry);
+function onDirectoryClick(directoryEntry, _target){
+    //3statu
+    //1.data unload
+    //2.data loaded
+    var target = $(_target);
+    if((target.attr("status"))&&(target.attr("status")=="load")){
+      target.next(".files").animate({height: 'toggle', opacity: 'toggle'}, "slow");
+    }else{
+      loadDirEntry(directoryEntry, target);
+      target.attr("status","load");
+    }
 } 
 
 function onFileClick(fileEntry){

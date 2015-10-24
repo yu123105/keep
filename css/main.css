@@ -1,3 +1,13 @@
+a{
+  text-decoration:none;
+  color: #000000;
+}
+.file{
+  background-color: #72CB6F;
+}
+.dir{
+  background-color: #FF620D;
+}
 #main{
   width: 100%;
 }
@@ -7,6 +17,7 @@
   display: inline;
   float:left;
   overflow:auto; 
+  background-color: #E6E6E6;
 }
 #content{
   width: 80%;
